@@ -92,7 +92,14 @@ int main(void)
 	MX_SPI1_Init();
 
 	/* USER CODE BEGIN 2 */
-	network_w5500_init();
+	networkInitStack nis = {
+		.RESET_PORT = LAN_RST_GPIO_Port,
+		.RESET_PIN = LAN_RST_Pin,
+		.CS_PORT = LAN_CS_GPIO_Port,
+		.CS_PIN = LAN_CS_Pin,
+		.SPI = &hspi1
+	};
+	network_w5500_init(&nis);
 
 	/* USER CODE END 2 */
 
@@ -104,7 +111,7 @@ int main(void)
 
 		/* USER CODE BEGIN 3 */
 		if (network_w5500_run() == OK) {
-			
+//TODO: DHCP needs 1s timer
 		}
 
 	}

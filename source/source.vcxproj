@@ -41,7 +41,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\CMSIS\Device\ST\STM32F1xx\Include;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Src;C:/Users/Rimvis/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F0xxxx/CMSIS_HAL/Include;../ioLibrary_Driver-master/Ethernet;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\CMSIS\Device\ST\STM32F1xx\Include;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Src;C:/Users/Rimvis/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F0xxxx/CMSIS_HAL/Include;../ioLibrary_Driver-master/Ethernet;../ioLibrary_Driver-master/Internet/DHCP;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;flash_layout;STM32F103xB;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
@@ -79,6 +79,7 @@
     <ClCompile Include="..\ioLibrary_Driver-master\Ethernet\socket.c" />
     <ClCompile Include="..\ioLibrary_Driver-master\Ethernet\W5500\w5500.c" />
     <ClCompile Include="..\ioLibrary_Driver-master\Ethernet\wizchip_conf.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\DHCP\dhcp.c" />
     <ClCompile Include="Src\gpio.c" />
     <ClCompile Include="Src\network.c" />
     <ClCompile Include="Src\spi.c" />
@@ -104,6 +105,7 @@
     <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\socket.h" />
     <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\W5500\w5500.h" />
     <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\wizchip_conf.h" />
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\DHCP\dhcp.h" />
     <ClInclude Include="Inc\gpio.h" />
     <ClInclude Include="Inc\network.h" />
     <ClInclude Include="Inc\spi.h" />

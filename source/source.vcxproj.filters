@@ -100,6 +100,12 @@
     <Filter Include="Header files\network-lib\W5500">
       <UniqueIdentifier>{25a4a0ac-eb15-4edc-ab28-469a1420b557}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\network-lib\dhcp">
+      <UniqueIdentifier>{41619867-4759-47d1-9da0-deebb38bba5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\network-lib\dhcp">
+      <UniqueIdentifier>{d7ec962a-6ff7-47e5-9226-d550e449eb5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\gpio.c">
@@ -261,6 +267,9 @@
     <ClCompile Include="Src\network.c">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\DHCP\dhcp.c">
+      <Filter>Source files\network-lib\dhcp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\socket.h">
@@ -274,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="Inc\network.h">
       <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\DHCP\dhcp.h">
+      <Filter>Header files\network-lib\dhcp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
