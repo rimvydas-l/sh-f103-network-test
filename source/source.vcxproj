@@ -42,7 +42,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
       <AdditionalIncludeDirectories>Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\CMSIS\Device\ST\STM32F1xx\Include;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Src;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>flash_layout;STM32F103xB;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG=1;flash_layout;STM32F103xB;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
       <CPPLanguageStandard />
@@ -57,7 +57,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
     <ClCompile>
       <AdditionalIncludeDirectories>Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\CMSIS\Device\ST\STM32F1xx\Include;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Src;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>flash_layout;STM32F103xB;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG=1;RELEASE=1;flash_layout;STM32F103xB;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
       <CPPLanguageStandard />
