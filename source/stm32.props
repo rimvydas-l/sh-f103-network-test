@@ -16,7 +16,7 @@
 	<ItemDefinitionGroup>
 		<Link>
 			<LinkerScript Condition="'%(Link.LinkerScript)' == ''">$(BSP_ROOT)/STM32F1xxxx/LinkerScripts/STM32F103C8_flash.lds</LinkerScript>
-			<AdditionalOptions>--specs=nano.specs --specs=rdimon.specs %(Link.AdditionalOptions)</AdditionalOptions>
+			<AdditionalOptions>--specs=rdimon.specs %(Link.AdditionalOptions)</AdditionalOptions>
 		</Link>
 	</ItemDefinitionGroup>
 	<PropertyGroup>

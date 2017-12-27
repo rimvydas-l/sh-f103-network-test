@@ -88,6 +88,18 @@
     <Filter Include="VisualGDB settings">
       <UniqueIdentifier>{a5579518-0799-4fe1-9332-f6694f1ec5e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source files\network-lib">
+      <UniqueIdentifier>{8d7732df-def4-4ae4-9cf3-4cb86dc99ec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\network-lib\W5500">
+      <UniqueIdentifier>{d40d52d8-81fa-49ae-ac23-4fc33e63943f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\network-lib">
+      <UniqueIdentifier>{80408a92-641a-4c8a-970e-132b1c0c479e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\network-lib\W5500">
+      <UniqueIdentifier>{25a4a0ac-eb15-4edc-ab28-469a1420b557}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\gpio.c">
@@ -237,5 +249,31 @@
     <None Include="stm32.xml">
       <Filter>VisualGDB settings</Filter>
     </None>
+    <ClCompile Include="..\ioLibrary_Driver-master\Ethernet\socket.c">
+      <Filter>Source files\network-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Ethernet\wizchip_conf.c">
+      <Filter>Source files\network-lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Ethernet\W5500\w5500.c">
+      <Filter>Source files\network-lib\W5500</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\network.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\socket.h">
+      <Filter>Header files\network-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\wizchip_conf.h">
+      <Filter>Header files\network-lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\W5500\w5500.h">
+      <Filter>Header files\network-lib\W5500</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\network.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

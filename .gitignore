@@ -289,3 +289,4 @@ __pycache__/
 
 # WIZ iOLib
 ioLibrary_Driver-master/
+/source/VisualGDB/VisualGDBCache/source-Debug/MemoryUtilizationReport.xml
