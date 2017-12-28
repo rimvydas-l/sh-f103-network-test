@@ -79,6 +79,11 @@ networkStatus network_w5500_run(void)
 	return nstatus;	
 }
 
+void network_1s_callback(void) 
+{
+	DHCP_time_handler();
+}
+
 //W5500 service functions
 
 void reset_w5500(void)
@@ -139,7 +144,7 @@ void my_ip_assign(void)
 	getDNSfromDHCP(gWizNetInfo.dns);
 	gWizNetInfo.dhcp = NETINFO_DHCP;
 	/* Network initialization */
-	wizchip_setnetinfo(&gWizNetInfo);              // apply from DHCP
+	wizchip_setnetinfo(&gWizNetInfo);               // apply from DHCP
 	
 	nstatus = IPSET;
 }

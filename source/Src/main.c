@@ -67,7 +67,7 @@ void SystemClock_Config(void);
 //interrrupt for every 1s
 void HAL_RTCEx_RTCEventCallback(RTC_HandleTypeDef *hrtc) 
 {
-	
+	network_1s_callback();
 }
 /* USER CODE END 0 */
 

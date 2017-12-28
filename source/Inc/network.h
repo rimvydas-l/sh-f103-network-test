@@ -10,8 +10,8 @@
 #define SOCK_DHCP					7
 #define LINK_OFF_RETRY				50
 
-#define MAGIC_COOKIE             0x001  ///< Any number. You can be modifyed it any number
-#define DCHP_HOST_NAME           "SH 0001\0"
+//#define MAGIC_COOKIE             0x001  ///< Any number. You can be modifyed it any number
+//#define DCHP_HOST_NAME           "SH 0001\0"
 
 typedef enum {
 	OFF     = 0,
@@ -31,5 +31,6 @@ typedef struct {
 
 void network_w5500_init(networkInitStack*);
 networkStatus network_w5500_run(void);
+void network_1s_callback(void);
 
 #endif
