@@ -39,6 +39,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
+#include "rtc.h"
 #include "spi.h"
 #include "gpio.h"
 
@@ -62,6 +63,12 @@ void SystemClock_Config(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
+
+//interrrupt for every 1s
+void HAL_RTCEx_RTCEventCallback(RTC_HandleTypeDef *hrtc) 
+{
+	
+}
 /* USER CODE END 0 */
 
 int main(void)
@@ -90,6 +97,7 @@ int main(void)
 	/* Initialize all configured peripherals */
 	MX_GPIO_Init();
 	MX_SPI1_Init();
+	MX_RTC_Init();
 
 	/* USER CODE BEGIN 2 */
 	networkInitStack nis = {
@@ -100,7 +108,9 @@ int main(void)
 		.SPI = &hspi1
 	};
 	network_w5500_init(&nis);
-
+	
+	HAL_RTCEx_SetSecond_IT(&hrtc);
+	
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -111,7 +121,7 @@ int main(void)
 
 		/* USER CODE BEGIN 3 */
 		if (network_w5500_run() == OK) {
-//TODO: DHCP needs 1s timer
+			//TODO: DHCP needs 1s timer
 		}
 
 	}
@@ -126,12 +136,14 @@ void SystemClock_Config(void)
 
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 	RCC_ClkInitTypeDef RCC_ClkInitStruct;
+	RCC_PeriphCLKInitTypeDef PeriphClkInit;
 
 	/**Initializes the CPU, AHB and APB busses clocks 
 	*/
-	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE | RCC_OSCILLATORTYPE_LSE;
 	RCC_OscInitStruct.HSEState = RCC_HSE_ON;
 	RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+	RCC_OscInitStruct.LSEState = RCC_LSE_ON;
 	RCC_OscInitStruct.HSIState = RCC_HSI_ON;
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
 	RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
@@ -151,6 +163,13 @@ void SystemClock_Config(void)
 	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
 	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+	{
+		_Error_Handler(__FILE__, __LINE__);
+	}
+
+	PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC;
+	PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
+	if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
 	{
 		_Error_Handler(__FILE__, __LINE__);
 	}
@@ -179,7 +198,7 @@ void SystemClock_Config(void)
 void _Error_Handler(char * file, int line)
 {
 	/* USER CODE BEGIN Error_Handler_Debug */
-	/* User can add his own implementation to report the HAL error return state */
+		/* User can add his own implementation to report the HAL error return state */
 	while (1) 
 	{
 	}
@@ -198,8 +217,8 @@ void _Error_Handler(char * file, int line)
 void assert_failed(uint8_t* file, uint32_t line)
 {
 	/* USER CODE BEGIN 6 */
-	/* User can add his own implementation to report the file name and line number,
-	  ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+		/* User can add his own implementation to report the file name and line number,
+		  ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 	/* USER CODE END 6 */
 
 }

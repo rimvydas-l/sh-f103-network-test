@@ -106,6 +106,12 @@
     <Filter Include="Source files\network-lib\dhcp">
       <UniqueIdentifier>{d7ec962a-6ff7-47e5-9226-d550e449eb5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source files\STM32Cube HAL\RTC">
+      <UniqueIdentifier>{80cbfafb-59a4-4b2c-ace2-2d3260b4c084}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\STM32Cube HAL\RTC">
+      <UniqueIdentifier>{0483558d-54a1-49ed-b4f4-120ee05ec085}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\gpio.c">
@@ -270,6 +276,21 @@
     <ClCompile Include="..\ioLibrary_Driver-master\Internet\DHCP\dhcp.c">
       <Filter>Source files\network-lib\dhcp</Filter>
     </ClCompile>
+    <ClCompile Include="Src\rtc.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rtc.c">
+      <Filter>Source files\STM32Cube HAL\RTC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rtc_ex.c">
+      <Filter>Source files\STM32Cube HAL\RTC</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc.h">
+      <Filter>Header files\STM32Cube HAL\RTC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc_ex.h">
+      <Filter>Header files\STM32Cube HAL\RTC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\socket.h">
@@ -286,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="..\ioLibrary_Driver-master\Internet\DHCP\dhcp.h">
       <Filter>Header files\network-lib\dhcp</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\rtc.h">
+      <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
