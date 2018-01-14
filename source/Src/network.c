@@ -4,6 +4,7 @@
 #include "stm32f1xx_hal.h"
 #include "socket.h"
 #include "dhcp.h"
+#include "MQTTClient.h"
 
 networkStatus nstatus;
 networkInitStack* initVars;
@@ -153,3 +154,6 @@ void my_ip_conflict(void)
 {
 	nstatus = OFF;
 }
+
+//MQTT
+

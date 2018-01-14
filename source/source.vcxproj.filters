@@ -112,6 +112,18 @@
     <Filter Include="Header files\STM32Cube HAL\RTC">
       <UniqueIdentifier>{0483558d-54a1-49ed-b4f4-120ee05ec085}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\network-lib\MQTT">
+      <UniqueIdentifier>{27db9172-8152-4008-bb63-11e1c21ed5ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\network-lib\MQTT\packet">
+      <UniqueIdentifier>{a00231ad-59ab-4bd8-932d-21293af0dd28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\network-lib\MQTT">
+      <UniqueIdentifier>{45cef17d-ad14-482a-9ca0-5dca43d3df9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\network-lib\MQTT\packet">
+      <UniqueIdentifier>{39cf5c2b-f259-4623-af29-242d2ce942fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\gpio.c">
@@ -291,6 +303,42 @@
     <ClInclude Include="..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rtc_ex.h">
       <Filter>Header files\STM32Cube HAL\RTC</Filter>
     </ClInclude>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\mqtt_interface.c">
+      <Filter>Source files\network-lib\MQTT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTClient.c">
+      <Filter>Source files\network-lib\MQTT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTConnectClient.c">
+      <Filter>Source files\network-lib\MQTT\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTConnectServer.c">
+      <Filter>Source files\network-lib\MQTT\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTDeserializePublish.c">
+      <Filter>Source files\network-lib\MQTT\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTFormat.c">
+      <Filter>Source files\network-lib\MQTT\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTPacket.c">
+      <Filter>Source files\network-lib\MQTT\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTSerializePublish.c">
+      <Filter>Source files\network-lib\MQTT\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTSubscribeClient.c">
+      <Filter>Source files\network-lib\MQTT\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTSubscribeServer.c">
+      <Filter>Source files\network-lib\MQTT\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribeClient.c">
+      <Filter>Source files\network-lib\MQTT\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribeServer.c">
+      <Filter>Source files\network-lib\MQTT\packet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\socket.h">
@@ -310,6 +358,33 @@
     </ClInclude>
     <ClInclude Include="Inc\rtc.h">
       <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\mqtt_interface.h">
+      <Filter>Header files\network-lib\MQTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTClient.h">
+      <Filter>Header files\network-lib\MQTT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTConnect.h">
+      <Filter>Header files\network-lib\MQTT\packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTFormat.h">
+      <Filter>Header files\network-lib\MQTT\packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTPacket.h">
+      <Filter>Header files\network-lib\MQTT\packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTPublish.h">
+      <Filter>Header files\network-lib\MQTT\packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTSubscribe.h">
+      <Filter>Header files\network-lib\MQTT\packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h">
+      <Filter>Header files\network-lib\MQTT\packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\StackTrace.h">
+      <Filter>Header files\network-lib\MQTT\packet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

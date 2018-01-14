@@ -41,7 +41,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:/Users/Rimvis/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F0xxxx/CMSIS_HAL/Include;../ioLibrary_Driver-master/Ethernet;../ioLibrary_Driver-master/Internet/DHCP;Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\CMSIS\Device\ST\STM32F1xx\Include;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Src;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:/Users/Rimvis/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F0xxxx/CMSIS_HAL/Include;../ioLibrary_Driver-master/Ethernet;../ioLibrary_Driver-master/Internet/DHCP;Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\CMSIS\Device\ST\STM32F1xx\Include;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy;..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Src;../ioLibrary_Driver-master/Internet/MQTT;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG=1;flash_layout;STM32F103xB;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions />
       <CLanguageStandard />
@@ -80,6 +80,18 @@
     <ClCompile Include="..\ioLibrary_Driver-master\Ethernet\W5500\w5500.c" />
     <ClCompile Include="..\ioLibrary_Driver-master\Ethernet\wizchip_conf.c" />
     <ClCompile Include="..\ioLibrary_Driver-master\Internet\DHCP\dhcp.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTClient.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTConnectClient.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTConnectServer.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTDeserializePublish.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTFormat.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTPacket.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTSerializePublish.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTSubscribeClient.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTSubscribeServer.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribeClient.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribeServer.c" />
+    <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\mqtt_interface.c" />
     <ClCompile Include="Src\gpio.c" />
     <ClCompile Include="Src\network.c" />
     <ClCompile Include="Src\rtc.c" />
@@ -107,6 +119,15 @@
     <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\W5500\w5500.h" />
     <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\wizchip_conf.h" />
     <ClInclude Include="..\ioLibrary_Driver-master\Internet\DHCP\dhcp.h" />
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTClient.h" />
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTConnect.h" />
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTFormat.h" />
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTPacket.h" />
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTPublish.h" />
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTSubscribe.h" />
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribe.h" />
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\StackTrace.h" />
+    <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\mqtt_interface.h" />
     <ClInclude Include="Inc\gpio.h" />
     <ClInclude Include="Inc\network.h" />
     <ClInclude Include="Inc\rtc.h" />
