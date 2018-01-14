@@ -43,5 +43,6 @@ extern MQTTClient client;
 void network_w5500_init(networkInitStack*);
 networkStatus network_w5500_run(void);
 void network_1s_callback(void);
+void network_1ms_callback(void);
 
 #endif

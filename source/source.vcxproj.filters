@@ -339,6 +339,9 @@
     <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribeServer.c">
       <Filter>Source files\network-lib\MQTT\packet</Filter>
     </ClCompile>
+    <ClCompile Include="Src\tim.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\socket.h">
@@ -385,6 +388,9 @@
     </ClInclude>
     <ClInclude Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\StackTrace.h">
       <Filter>Header files\network-lib\MQTT\packet</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\tim.h">
+      <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

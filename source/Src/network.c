@@ -29,8 +29,8 @@ uint8_t linkOffRetry;
 MQTTClient client;
 Network n;
 MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
-unsigned char mhost[4] = MQTT_CLIENT_HOST;    // mqtt server IP
-unsigned int mhostPort = MQTT_CLIENT_PORT;    // mqtt server port
+unsigned char mhost[4] = MQTT_CLIENT_HOST;     // mqtt server IP
+unsigned int mhostPort = MQTT_CLIENT_PORT;     // mqtt server port
 
 
 void reset_w5500(void);
@@ -79,7 +79,7 @@ networkStatus network_w5500_run(void)
 		}
 		break;
 	case IPSET:
-		if (checkSockOpen(SOCK_MQTT)) 
+		if (checkSockOpen(SOCK_MQTT) && client.isconnected) 
 		{
 			nstatus = MQTTRDY;
 		}
@@ -89,6 +89,7 @@ networkStatus network_w5500_run(void)
 		}
 		break;
 	case MQTTRDY:
+		MQTTYield(&client, 50);
 		nstatus = OK;
 		break;
 	case OK:
@@ -164,7 +165,7 @@ void my_ip_assign(void)
 	getDNSfromDHCP(gWizNetInfo.dns);
 	gWizNetInfo.dhcp = NETINFO_DHCP;
 	/* Network initialization */
-	wizchip_setnetinfo(&gWizNetInfo);                  // apply from DHCP
+	wizchip_setnetinfo(&gWizNetInfo);                   // apply from DHCP
 	
 	nstatus = IPSET;
 }
@@ -175,6 +176,14 @@ void my_ip_conflict(void)
 }
 
 //MQTT
+
+void messageArrived(MessageData* md)
+{
+	unsigned char testbuffer[100];
+	MQTTMessage* message = md->message;
+	char* payload = message->payload;
+}
+
 
 void initMQTTClient()
 {
@@ -191,8 +200,15 @@ void initMQTTClient()
 	data.keepAliveInterval = 60;
 	data.cleansession = 1;
 	rc = MQTTConnect(&client, &data);
+	
+	rc = MQTTSubscribe(&client, "hello/test", QOS0, messageArrived);
 }
 
 uint8_t checkSockOpen(uint8_t sNr) {
 	return getSn_SR(sNr) == SOCK_ESTABLISHED;
+}
+
+void network_1ms_callback(void)
+{
+	MilliTimer_Handler();
 }
