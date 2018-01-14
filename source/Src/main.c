@@ -45,13 +45,16 @@
 
 /* USER CODE BEGIN Includes */
 #include "network.h"
+#include "MQTTClient.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+MQTTMessage m;
+u_int32_t msgCount;
+u_int32_t msgCountTmp;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -68,6 +71,8 @@ void SystemClock_Config(void);
 void HAL_RTCEx_RTCEventCallback(RTC_HandleTypeDef *hrtc) 
 {
 	network_1s_callback();
+	msgCount = msgCountTmp;
+	msgCountTmp = 0;
 }
 /* USER CODE END 0 */
 
@@ -120,9 +125,15 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		if (network_w5500_run() == OK) {
-			//TODO: DHCP needs 1s timer
-		}
+		if (client.isconnected) 
+		{
+			m.qos = QOS2;
+			m.payload = "Test MQTT server";
+			m.payloadlen = strlen(m.payload);
+			MQTTPublish(&client, "test", &m);
+			msgCountTmp++;
+	}
+		network_w5500_run();
 
 	}
 	/* USER CODE END 3 */

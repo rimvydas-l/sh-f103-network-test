@@ -11,6 +11,8 @@ networkInitStack* initVars;
 
 uint8_t memsize[2][8] = { { 2, 2, 2, 2, 2, 2, 2, 2 }, { 2, 2, 2, 2, 2, 2, 2, 2 } };
 uint8_t gDhcpDataBuff[DATA_BUF_SIZE];
+uint8_t gMQTTSendDataBuff[DATA_BUF_SIZE];
+uint8_t gMQTTRecvDataBuff[DATA_BUF_SIZE];
 
 wiz_NetInfo gWizNetInfo = {
 	.mac = { 0x00, 0x01, 0xff, 0xab, 0xcd, 0xef },
@@ -24,6 +26,12 @@ wiz_NetInfo gWizNetInfo = {
 uint8_t dhcpStatus;
 uint8_t linkOffRetry;
 
+MQTTClient client;
+Network n;
+MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
+unsigned char mhost[4] = MQTT_CLIENT_HOST;    // mqtt server IP
+unsigned int mhostPort = MQTT_CLIENT_PORT;    // mqtt server port
+
 
 void reset_w5500(void);
 void  wizchip_select(void);
@@ -34,7 +42,8 @@ void init_w5500(void);
 int8_t getLinkStatus(void); 
 void my_ip_assign(void);
 void my_ip_conflict(void);
-
+uint8_t checkSockOpen(uint8_t sNr);
+void initMQTTClient();
 
 //public functions
 
@@ -70,6 +79,16 @@ networkStatus network_w5500_run(void)
 		}
 		break;
 	case IPSET:
+		if (checkSockOpen(SOCK_MQTT)) 
+		{
+			nstatus = MQTTRDY;
+		}
+		else 
+		{
+			initMQTTClient();
+		}
+		break;
+	case MQTTRDY:
 		nstatus = OK;
 		break;
 	case OK:
@@ -145,7 +164,7 @@ void my_ip_assign(void)
 	getDNSfromDHCP(gWizNetInfo.dns);
 	gWizNetInfo.dhcp = NETINFO_DHCP;
 	/* Network initialization */
-	wizchip_setnetinfo(&gWizNetInfo);               // apply from DHCP
+	wizchip_setnetinfo(&gWizNetInfo);                  // apply from DHCP
 	
 	nstatus = IPSET;
 }
@@ -157,3 +176,23 @@ void my_ip_conflict(void)
 
 //MQTT
 
+void initMQTTClient()
+{
+	int rc = 0;
+	NewNetwork(&n, SOCK_MQTT);
+	ConnectNetwork(&n, mhost, mhostPort);
+	MQTTClientInit(&client, &n, 1000, gMQTTSendDataBuff, DATA_BUF_SIZE, gMQTTRecvDataBuff, DATA_BUF_SIZE);
+	
+	data.willFlag = 0;
+	data.MQTTVersion = 3;
+	data.clientID.cstring = MQTT_CLIENT_ID;
+	data.username.cstring = MQTT_CLIENT_USR;
+	data.password.cstring = MQTT_CLIENT_PWD;
+	data.keepAliveInterval = 60;
+	data.cleansession = 1;
+	rc = MQTTConnect(&client, &data);
+}
+
+uint8_t checkSockOpen(uint8_t sNr) {
+	return getSn_SR(sNr) == SOCK_ESTABLISHED;
+}
