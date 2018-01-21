@@ -2,10 +2,6 @@
 #ifndef _PROJECT_NETWORK_H
 #define _PROJECT_NETWORK_H
 
-#include "stm32f1xx_hal.h"
-#include "dhcp.h"
-#include "MQTTClient.h"
-
 
 #define DATA_BUF_SIZE				2048
 #define SOCK_MQTT					6
@@ -16,6 +12,12 @@
 #define MQTT_CLIENT_PWD				NULL
 #define MQTT_CLIENT_HOST			{ 192, 168, 1, 108 }
 #define MQTT_CLIENT_PORT			1883
+
+#define MAX_MESSAGE_HANDLERS		15
+
+#include "stm32f1xx_hal.h"
+#include "dhcp.h"
+#include "MQTTClient.h"
 
 
 //#define MAGIC_COOKIE             0x001  ///< Any number. You can be modifyed it any number
@@ -36,6 +38,9 @@ typedef struct {
 	GPIO_TypeDef* CS_PORT;
 	uint16_t CS_PIN;
 	SPI_HandleTypeDef* SPI;
+	GPIO_TypeDef* LED_PORT;
+	uint16_t LED_PIN;
+
 } networkInitStack;
 
 extern MQTTClient client;

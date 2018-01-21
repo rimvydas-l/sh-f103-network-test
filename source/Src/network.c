@@ -29,9 +29,10 @@ uint8_t linkOffRetry;
 MQTTClient client;
 Network n;
 MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
-unsigned char mhost[4] = MQTT_CLIENT_HOST;     // mqtt server IP
-unsigned int mhostPort = MQTT_CLIENT_PORT;     // mqtt server port
+unsigned char mhost[4] = MQTT_CLIENT_HOST;        // mqtt server IP
+unsigned int mhostPort = MQTT_CLIENT_PORT;        // mqtt server port
 
+MQTTMessage m;
 
 void reset_w5500(void);
 void  wizchip_select(void);
@@ -165,7 +166,7 @@ void my_ip_assign(void)
 	getDNSfromDHCP(gWizNetInfo.dns);
 	gWizNetInfo.dhcp = NETINFO_DHCP;
 	/* Network initialization */
-	wizchip_setnetinfo(&gWizNetInfo);                   // apply from DHCP
+	wizchip_setnetinfo(&gWizNetInfo);                      // apply from DHCP
 	
 	nstatus = IPSET;
 }
@@ -177,16 +178,41 @@ void my_ip_conflict(void)
 
 //MQTT
 
-void messageArrived(MessageData* md)
+void publishMessage(char* topic, char* payload, uint8_t len)
 {
-	unsigned char testbuffer[100];
-	MQTTMessage* message = md->message;
-	char* payload = message->payload;
+	m.payload = payload;
+	m.payloadlen = len;
+	MQTTPublish(&client, topic, &m);
 }
 
+void messageArrived1(MessageData* md)
+{
+	if (md->message->payloadlen == 1)
+	{
+		char* payload=md->message->payload;
+		if (*payload == '0') 
+		{
+			HAL_GPIO_WritePin(initVars->LED_PORT, initVars->LED_PIN, GPIO_PIN_SET);
+			publishMessage("aaa/out/1", "0", 1);
+		}
+		if (*payload == '1')
+		{
+			HAL_GPIO_WritePin(initVars->LED_PORT, initVars->LED_PIN, GPIO_PIN_RESET);
+			publishMessage("aaa/out/1", "1", 1);
+		}
+	}
+}
+
+void initMessage() 
+{
+	m.retained = 0;
+	m.qos = QOS1;
+}
 
 void initMQTTClient()
 {
+	initMessage();
+	
 	int rc = 0;
 	NewNetwork(&n, SOCK_MQTT);
 	ConnectNetwork(&n, mhost, mhostPort);
@@ -201,7 +227,7 @@ void initMQTTClient()
 	data.cleansession = 1;
 	rc = MQTTConnect(&client, &data);
 	
-	rc = MQTTSubscribe(&client, "hello/test", QOS0, messageArrived);
+	rc = MQTTSubscribe(&client, "aaa/in/1", QOS0, messageArrived1);
 }
 
 uint8_t checkSockOpen(uint8_t sNr) {

@@ -119,7 +119,9 @@ int main(void)
 		.RESET_PIN = LAN_RST_Pin,
 		.CS_PORT = LAN_CS_GPIO_Port,
 		.CS_PIN = LAN_CS_Pin,
-		.SPI = &hspi1
+		.SPI = &hspi1,
+		.LED_PORT = LED_GPIO_Port,
+		.LED_PIN = LED_Pin
 	};
 	network_w5500_init(&nis);
 	
@@ -135,19 +137,23 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-		if (canSend>0) {
-			if (client.isconnected) 
-			{
-				m.retained = 1;
-				m.qos = QOS2;
-				m.payload = "Test MQTT server";
-				m.payloadlen = strlen(m.payload);
-				MQTTPublish(&client, "test", &m);
-				msgCountTmp++;
-			}
-			canSend--;
-		}
+//		if (canSend > 0) {
+//			if (client.isconnected) 
+//			{
+//				//				m.retained = 1;
+//				//				m.qos = QOS2;
+//				//				m.payload = "Test MQTT server";
+//				//				m.payloadlen = strlen(m.payload);
+//				//				MQTTPublish(&client, "test", &m);
+//				//				msgCountTmp++;
+//			}
+//			canSend--;
+//		}
 		network_w5500_run();
+//  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+//		HAL_Delay(500);
+//		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+//		HAL_Delay(500);
 
 	}
   /* USER CODE END 3 */
@@ -223,7 +229,7 @@ void SystemClock_Config(void)
 void _Error_Handler(char * file, int line)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-		/* User can add his own implementation to report the HAL error return state */
+		  /* User can add his own implementation to report the HAL error return state */
 	while (1) 
 	{
 	}
@@ -242,8 +248,8 @@ void _Error_Handler(char * file, int line)
 void assert_failed(uint8_t* file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
-		/* User can add his own implementation to report the file name and line number,
-		  ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+		  /* User can add his own implementation to report the file name and line number,
+		    ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 
 }
