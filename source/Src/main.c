@@ -47,6 +47,7 @@
 /* USER CODE BEGIN Includes */
 #include "network.h"
 #include "MQTTClient.h"
+#include "memory.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/

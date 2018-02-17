@@ -92,6 +92,7 @@
     <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribeClient.c" />
     <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\MQTTPacket\src\MQTTUnsubscribeServer.c" />
     <ClCompile Include="..\ioLibrary_Driver-master\Internet\MQTT\mqtt_interface.c" />
+    <ClCompile Include="memory.c" />
     <ClCompile Include="Src\gpio.c" />
     <ClCompile Include="Src\network.c" />
     <ClCompile Include="Src\rtc.c" />
@@ -115,6 +116,7 @@
     <ClCompile Include="..\..\..\..\..\Users\Rimvis\STM32Cube\Repository\STM32Cube_FW_F1_V1.6.0\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.c" />
     <ClCompile Include="Src\tim.c" />
     <ClInclude Include="Inc\tim.h" />
+    <ClInclude Include="memory.h" />
     <None Include="stm32.props" />
     <ClCompile Include="$(BSP_ROOT)\STM32F1xxxx\StartupFiles\startup_stm32f103xb.c" />
     <ClInclude Include="..\ioLibrary_Driver-master\Ethernet\socket.h" />
