@@ -49,6 +49,8 @@
 
 #define LED_Pin GPIO_PIN_13
 #define LED_GPIO_Port GPIOC
+#define MEM_CS_Pin GPIO_PIN_1
+#define MEM_CS_GPIO_Port GPIOA
 #define LAN_RST_Pin GPIO_PIN_2
 #define LAN_RST_GPIO_Port GPIOA
 #define LAN_INT_Pin GPIO_PIN_3
