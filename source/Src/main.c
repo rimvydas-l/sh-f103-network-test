@@ -58,6 +58,9 @@ MQTTMessage m;
 u_int32_t msgCount;
 u_int32_t msgCountTmp;
 u_int8_t canSend;
+
+uint8_t rdBuf[256];
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -82,6 +85,26 @@ void HAL_RTCEx_RTCEventCallback(RTC_HandleTypeDef *hrtc)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	network_1ms_callback();
+}
+
+void  memory_select(void)
+{
+	HAL_GPIO_WritePin(MEM_CS_GPIO_Port, MEM_CS_Pin, GPIO_PIN_RESET);	
+}
+
+void  memory_deselect(void)
+{
+	HAL_GPIO_WritePin(MEM_CS_GPIO_Port, MEM_CS_Pin, GPIO_PIN_SET);	
+}
+
+void memory_read(uint8_t* pBuf, uint16_t len)
+{
+	HAL_SPI_Receive(&hspi1, pBuf, len, HAL_MAX_DELAY);
+}
+
+void  memory_write(uint8_t* pBuf, uint16_t len)
+{
+	HAL_SPI_Transmit(&hspi1, pBuf, len, HAL_MAX_DELAY);
 }
 /* USER CODE END 0 */
 
@@ -129,6 +152,13 @@ int main(void)
 	HAL_RTCEx_SetSecond_IT(&hrtc);
 	HAL_TIM_Base_Start_IT(&htim4);
 	
+	reg_memchip_cs_cbfunc(memory_select, memory_deselect);
+	reg_memchip_spiburst_cbfunc(memory_read, memory_write);
+	
+	memchip_reset();
+	HAL_Delay(10);
+	
+	memchip_read_sfdp( rdBuf);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -138,23 +168,14 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-//		if (canSend > 0) {
-//			if (client.isconnected) 
-//			{
-//				//				m.retained = 1;
-//				//				m.qos = QOS2;
-//				//				m.payload = "Test MQTT server";
-//				//				m.payloadlen = strlen(m.payload);
-//				//				MQTTPublish(&client, "test", &m);
-//				//				msgCountTmp++;
-//			}
-//			canSend--;
-//		}
-		network_w5500_run();
-//  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-//		HAL_Delay(500);
-//		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-//		HAL_Delay(500);
+
+		
+		//		network_w5500_run();
+		
+		//  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+		//		HAL_Delay(500);
+		//		HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+		//		HAL_Delay(500);
 
 	}
   /* USER CODE END 3 */
@@ -230,7 +251,7 @@ void SystemClock_Config(void)
 void _Error_Handler(char * file, int line)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-		  /* User can add his own implementation to report the HAL error return state */
+			/* User can add his own implementation to report the HAL error return state */
 	while (1) 
 	{
 	}
@@ -249,8 +270,8 @@ void _Error_Handler(char * file, int line)
 void assert_failed(uint8_t* file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
-		  /* User can add his own implementation to report the file name and line number,
-		    ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+			/* User can add his own implementation to report the file name and line number,
+			  ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 
 }
